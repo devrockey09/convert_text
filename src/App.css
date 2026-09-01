@@ -1,0 +1,70 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+  padding:0px; margin:0px; box-sizing:border-box; font-family: var(--secondary-font); 
+}
+
+:root{
+  --primary-font: "Space Grotesk", sans-serif;
+  --secondary-font: "Poppins", sans-serif;
+  --bg-primary: #0d0908;
+  --bg-secondary: #17100e;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+   --text-primary: #ffffff;
+  --text-secondary: #b9b2ae;
+  --accent: #ff7417;
+  --accent-light: #ff9a3c;
+}
+
+a{text-decoration:none; color:inherit;}
+ul{ list-style:none; padding:0px; margin:0px;}
+p{font-family: var(--secondary-font); font-size:16px; line-height:25px; letter-spacing:0.02em; font-weight:400; padding-bottom:20px;}
+p:nth-last-child(1){ padding-bottom:0px;}
+
+.conatiner{max-width:1366px; margin:0px auto; padding:0px 20px;}
+
+/* Main Banner Start */
+.main-banner{
+  padding:160px 0 60px; 
+  min-height:100vh; 
+  background:
+        /* subtle orange glow - top center */
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(113, 48, 10, 0.20) 0%,
+            rgba(55, 24, 8, 0.12) 25%,
+            transparent 55%
+        ),
+
+        /* subtle orange glow - right */
+        radial-gradient(
+            circle at 90% 45%,
+            rgba(116, 48, 10, 0.13) 0%,
+            transparent 38%
+        ),
+
+        /* subtle glow - left */
+        radial-gradient(
+            circle at 5% 55%,
+            rgba(103, 43, 10, 0.12) 0%,
+            transparent 35%
+        ),
+
+        /* overall dark gradient */
+        linear-gradient(
+            135deg,
+            #0d0a09 0%,
+            #120b08 35%,
+            #0d0908 65%,
+            #0a0807 100%
+        );
+}
+.main-banner .heading-blk {text-align:center; padding-bottom:40px;}
+.main-banner .heading-blk h1{ color:#fff; font-family:var(--primary-font); font-size:40px; font-weight:700; line-height:45px; letter-spacing:-0.02em; padding-bottom:20px;}
+.main-banner .heading-blk strong{font-weight:700; color:var(--accent)}
+.main-banner .heading-blk p{color:var(--text-secondary)} 
+
+
