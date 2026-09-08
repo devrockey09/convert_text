@@ -5,7 +5,7 @@ function Header() {
     <>
       <header className='header px-[20px] py-[20px] fixed top-0 left-0 w-full z-[999]'>
         <div className="container ">
-           <div className='flex justify-between  inner-blk px-[20px] py-[15px] rounded-[14px] items-center'>
+           <div className='flex justify-between  inner-blk px-[20px] py-[10px] rounded-[14px] items-center'>
             <div className='logo-blk'>
                 <h2 className="text-white text-2xl">Convert<strong className="text-[#f2932b]">Case</strong></h2>
             </div>
