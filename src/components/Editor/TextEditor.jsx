@@ -18,10 +18,6 @@ function TextEditor() {
 
   const [message , setMessage] = useState("")
 
-  const [storageValue , setStorageValue] = useState({
-      storeValue : localStorage.getItem("textareaValue");
-      getValue : JSON.parse("textareaValue")
-  })
 
   useEffect(() => {
     if (message) {
@@ -30,21 +26,21 @@ function TextEditor() {
       }, 2000);}},[message]);
 
 
-  useEffect(() => {
-    localStorage.setItem(
-      "textareaValue",
-      JSON.stringify(textareaValue)
-    );
-  }, [textareaValue]);
+  // useEffect(() => {
+  //   localStorage.setItem(
+  //     "textareaValue",
+  //     JSON.stringify(textareaValue)
+  //   );
+  // }, [textareaValue]);
 
 
-  useEffect(() => {
-    const storeValue = localStorage.getItem("textareaValue");
+  // useEffect(() => {
+  //   const storeValue = localStorage.getItem("textareaValue");
 
-    if (storeValue) {
-      setValue("textareaValue", JSON.parse(storeValue));
-    }
-  }, [setValue]);
+  //   if (storeValue) {
+  //     setValue("textareaValue", JSON.parse(storeValue));
+  //   }
+  // }, [setValue]);
 
 
 
@@ -76,13 +72,11 @@ function TextEditor() {
     })
 
     const margesentance = sentancecasemap.join(".")
-
     return (
       setValue("textareaValue", margesentance)
 
     )
   }
-
 
   // ===== Capitalize case Text Converter =====
   const capitalizedCaseValue = () => {
@@ -102,6 +96,40 @@ function TextEditor() {
   }
 
 
+  // Alternative case
+  const alternativeCase = () => {
+    const splitValue = textareaValue.split("");
+    const findOddEven = splitValue.map((item , index) => {
+         if(index % 2 === 0){
+             return item.toUpperCase()
+         } 
+         else{
+            return item.toLowerCase()
+         }
+    })
+    const joinValue = findOddEven.join("")
+    return setValue("textareaValue", joinValue) 
+
+  }
+
+  // reverse case
+  const reverseCase = () => {
+     
+    const splitValue = textareaValue.split("")
+    const findReverseValue = splitValue.map((item) => {
+        if(item === item.toUpperCase()){
+          return item.toLowerCase()
+        }
+        else{
+         return  item.toUpperCase()
+        }
+    }).join("")
+
+    return setValue("textareaValue" , findReverseValue)
+
+  }
+
+
   // clear function
   const clearFn = () => {
      setMessage("Text cleared successfully");
@@ -109,7 +137,6 @@ function TextEditor() {
       setValue("textareaValue", "")
     )
   }
-
 
   //  text download function 
 const downloadText = () => {
@@ -150,9 +177,9 @@ const copymessage = () => {
             <Button onClick={lowerCaseValue} className={"common-btn"} strongText={"lc"} text={"lower case"} />
             <Button onClick={upperCaseValue} className={"common-btn"} strongText={"UC"} text={"UPPER CASE"} />
             <Button onClick={capitalizedCaseValue} className={"common-btn"} strongText={"CC"} text={"Capitalized Case"} />
-            <Button className={"common-btn"} strongText={"aC"} text={"aLtErNaTiNg cAsE"} />
+            <Button onClick={alternativeCase} className={"common-btn"} strongText={"aC"} text={"aLtErNaTiNg cAsE"} />
             <Button className={"common-btn"} strongText={"TC"} text={"Title Case"} />
-            <Button className={"common-btn"} strongText={"iC"} text={"InVeRsE CaSe"} />
+            <Button onClick={reverseCase} className={"common-btn"} strongText={"iC"} text={"InVeRsE CaSe"} />
           </div>
         </form>
       </div>
