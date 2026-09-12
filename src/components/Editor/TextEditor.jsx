@@ -80,22 +80,17 @@ function TextEditor() {
   const capitalizedCaseValue = () => {
   const splitText = textareaValue.split("\n")
   const capitalizecaseMap = splitText.map((item) => {
-   const splitwithSpace = item.split(" ")
+   const splitwithSpace = item.trim().split(" ")
     return(
       splitwithSpace.map((item) => {
-
-        if (item.length === 0) return "";
-
         const firstCase = item[0].toUpperCase();
         const remainingCase  = item.slice(1).toLowerCase();
         return(firstCase + remainingCase)
       }).join(" ")
     )
     }).join("\n")
-
     return (
       setValue("textareaValue", capitalizecaseMap)
-      
     )
   }
 
