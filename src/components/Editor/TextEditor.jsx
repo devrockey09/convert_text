@@ -67,10 +67,8 @@ function TextEditor() {
       const sentancecasemap = splitWord.map((item) => {
       const firstletter = item[0].toUpperCase();
       const remainingletters = item.slice(1).toLowerCase();
-
       return (firstletter + remainingletters)
     })
-
     const margesentance = sentancecasemap.join(".")
     return (
       setValue("textareaValue", margesentance)
@@ -80,18 +78,19 @@ function TextEditor() {
 
   // ===== Capitalize case Text Converter =====
   const capitalizedCaseValue = () => {
-    const splitWord = textareaValue.split(" ");
-
-    const capSplitWord = splitWord.map((item) => {
-      const firstletter = item[0].toUpperCase();
-      const reaminingLetters = item.slice(1).toLowerCase();
-      return (firstletter + reaminingLetters)
-    })
-
-    const joinlatter = capSplitWord.join(" ")
-
+  const splitText = textareaValue.split("\n")
+  const capitalizecaseMap = splitText.map((item) => {
+   const splitwithSpace = item.trim().split(" ")
+    return(
+      splitwithSpace.map((item) => {
+        const firstCase = item[0].toUpperCase();
+        const remainingCase  = item.slice(1).toLowerCase();
+        return(firstCase + remainingCase)
+      }).join(" ")
+    )
+    }).join("\n")
     return (
-      setValue("textareaValue", joinlatter)
+      setValue("textareaValue", capitalizecaseMap)
     )
   }
 
@@ -124,9 +123,7 @@ function TextEditor() {
          return  item.toUpperCase()
         }
     }).join("")
-
     return setValue("textareaValue" , findReverseValue)
-
   }
 
 
