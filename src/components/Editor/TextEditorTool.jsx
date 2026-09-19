@@ -4,7 +4,7 @@ import { GoDownload } from "react-icons/go";
 
 function TextEditorTool({ clearFn, downloadFn, copyFn }) {
   return (
-    <div className="caseconverttols flex flex-wrap gap-[12px] justify-start items-center mt-5">
+    <div className=" flex flex-wrap gap-[12px] justify-start items-center ">
       {/* Clear*/}
       <button type="button" onClick={clearFn} className="tool-button">
         <AiOutlineDelete />

@@ -1,16 +1,61 @@
 import Button from "../common/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TextEditorTool from "./TextEditorTool";
 import useCaseConversion from "../../hooks/useCaseConversion";
 import downloadText from "../../helpers/textActions";
 import useCopyToClipboard from "../../hooks/useCopyToClipboard";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import WordCount from "./WordCount";
 
 function TextEditor() {
   const { storedValue: textareaValue, setStoredValue: setTextareaValue } =
     useLocalStorage("convert-case-text", "");
   const [message, setMessage] = useState("");
   const copyToClipboard = useCopyToClipboard();
+
+const [history, setHistory] = useState([textareaValue]);
+const historyIndex = useRef(0);
+
+const updateText = (newValue) => {
+  const newHistory = history.slice(0, historyIndex.current + 1);
+   console.log(newValue , "newValue")
+  newHistory.push(newValue);
+
+  setHistory(newHistory);
+  historyIndex.current = newHistory.length - 1;
+
+  setTextareaValue(newValue);
+};
+
+
+
+  const wordunDoBYword = () =>{
+      const splitbyWord = textareaValue.trim().split(" ");
+      const lastWord = splitbyWord.slice(0,-1).join(" ")
+
+  updateText(lastWord);
+     
+  }
+const redo = () => {
+
+  if (historyIndex.current < history.length - 1) {
+    historyIndex.current += 1;
+    const nextValue = history[historyIndex.current]
+    console.log(nextValue , "nextValue")
+    setTextareaValue(
+      nextValue
+    );
+  }
+};
+
+
+ const undobyCharecter = () => {
+   const splitBychar = textareaValue.trim().split("");
+   const lastchar = splitBychar.slice(0, -1).join("")
+
+   return setTextareaValue(lastchar);
+
+ }
 
   const {
     lowerCaseValue,
@@ -64,12 +109,39 @@ function TextEditor() {
               </p>
             </div>
           )}
+          <div className="flex justify-between items-center caseconverttols">
+            <div className="flex left-blk items-center gap-2">
+              <TextEditorTool
+                clearFn={clearFn}
+                copyFn={copyText}
+                downloadFn={() => downloadText(textareaValue, setMessage)}
+              />
+            <div className="flex  items-center gap-2">
+              <button onClick={wordunDoBYword} 
+              className="tool-button" type="button " >
+                Undo By Word
+              </button>
+               <button 
+              className="tool-button" type="button" onClick={redo} >
+                Redo By Word
+              </button>
 
-          <TextEditorTool
-            clearFn={clearFn}
-            copyFn={copyText}
-            downloadFn={() => downloadText(textareaValue, setMessage)}
-          />
+              <button onClick={undobyCharecter} 
+              className="tool-button" type="button" >
+                Undo By Charecter
+              </button>
+
+
+            </div>
+            </div>
+
+            <div className="word-count-blk">
+                 <WordCount textvalue={textareaValue} />
+            </div>
+
+          </div>
+         
+         
           <div className="text-editor-tools-blk  p-2  rounded-[10px] mt-5 flex flex-wrap gap-[12px] justify-center items-center ">
             <Button
               onClick={sentenceCaseValue}
