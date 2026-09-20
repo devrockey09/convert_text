@@ -77,7 +77,7 @@ const reverseCase = (value) =>
     })
     .join("");
 
-const updateText = (textareaValue, setTextareaValue, transform) =>
+const updateChangeText = (textareaValue, setTextareaValue, transform) =>
   setTextareaValue(transform(textareaValue));
 
 export {
@@ -86,5 +86,5 @@ export {
   reverseCase,
   sentenceCase,
   titleCase,
-  updateText,
+  updateChangeText,
 };

@@ -4,30 +4,34 @@ import {
   reverseCase,
   sentenceCase,
   titleCase,
-  updateText,
+  updateChangeText,
 } from "../helpers/caseConverters";
 
 function useCaseConversion(textareaValue, setTextareaValue) {
   const lowerCaseValue = () =>
-    updateText(textareaValue, setTextareaValue, (value) => value.toLowerCase());
+    updateChangeText(textareaValue, setTextareaValue, (value) =>
+      value.toLowerCase(),
+    );
 
   const upperCaseValue = () =>
-    updateText(textareaValue, setTextareaValue, (value) => value.toUpperCase());
+    updateChangeText(textareaValue, setTextareaValue, (value) =>
+      value.toUpperCase(),
+    );
 
   const sentenceCaseValue = () =>
-    updateText(textareaValue, setTextareaValue, sentenceCase);
+    updateChangeText(textareaValue, setTextareaValue, sentenceCase);
 
   const capitalizedCaseValue = () =>
-    updateText(textareaValue, setTextareaValue, capitalizeWords);
+    updateChangeText(textareaValue, setTextareaValue, capitalizeWords);
 
   const alternativeCaseValue = () =>
-    updateText(textareaValue, setTextareaValue, alternativeCase);
+    updateChangeText(textareaValue, setTextareaValue, alternativeCase);
 
   const titleCaseValue = () =>
-    updateText(textareaValue, setTextareaValue, titleCase);
+    updateChangeText(textareaValue, setTextareaValue, titleCase);
 
   const reverseCaseValue = () =>
-    updateText(textareaValue, setTextareaValue, reverseCase);
+    updateChangeText(textareaValue, setTextareaValue, reverseCase);
 
   return {
     lowerCaseValue,
